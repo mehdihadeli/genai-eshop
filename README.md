@@ -1,6 +1,6 @@
 # GenAI-Eshop
 
-> Practical GenAI-Eshop application using [microsoft/agent-framework](https://github.com/microsoft/agent-framework), multi-agent orchestrations, Mcps tools, A2A agents, semantic search and more.
+> Practical `GenAI-Eshop` application using [microsoft/agent-framework](https://github.com/microsoft/agent-framework), `multi-agent orchestrations`, `Mcps tools`, `A2A agents`, `Semantic Search` and more.
 
 > **Tip**
 > This project is in progress. I add new features over the time. You can check the [Release Notes](https://github.com/mehdihadeli/genai-eshop/releases/).
