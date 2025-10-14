@@ -1,0 +1,81 @@
+### Recommendations Microservice API Tests
+@baseUrl = http://localhost:2000
+
+### 1. Get Personalized Recommendations for a User
+POST {{baseUrl}}/api/v1/recommendations/personalized-recommend
+Content-Type: application/json
+
+{
+  "userId": "f8a9b0c1-d2e3-4f5a-8b9c-0d1e2f3a4b5c",
+  "query": "Looking for premium audio and tech gadgets",
+  "preferences": "High quality audio, long battery life, premium build quality",
+  "category": "electronics"
+}
+
+### 2. Get Personalized Recommendations (Minimal Data)
+POST {{baseUrl}}/api/v1/recommendations/personalized-recommend
+Content-Type: application/json
+
+{
+  "userId": "8b7c6d5e-4f3a-4b2c-9d0e-1f2a3b4c5d6e"
+}
+
+### 3. Get AI-Powered Product Recommendations for Headphones
+POST {{baseUrl}}/api/v1/recommendations/recommend
+Content-Type: application/json
+
+{
+  "query": "Best noise cancelling headphones with long battery life"
+}
+
+### 4. Get AI-Powered Product Recommendations for Laptops
+POST {{baseUrl}}/api/v1/recommendations/recommend
+Content-Type: application/json
+
+{
+  "query": "High performance laptops for gaming and creative work"
+}
+
+### 5. Compare Multiple Headphones
+POST {{baseUrl}}/api/v1/recommendations/compare
+Content-Type: application/json
+
+{
+  "productIds": [
+    "1cebd88a-4522-418a-a1ce-53a550695914",
+    "b2345678-9abc-489a-1234-56789abcdef0"
+  ],
+  "criteria": "noise cancellation, comfort, battery life, value for money"
+}
+
+### 6. Compare Gaming and Productivity Laptops
+POST {{baseUrl}}/api/v1/recommendations/compare
+Content-Type: application/json
+
+{
+  "productIds": [
+    "4b5c6d7e-8f90-4123-a4b5-c6d7e8f90123",
+    "e56789ab-cdef-4bcd-4567-89abcdef0123"
+  ],
+  "criteria": "performance, display quality, portability, battery life"
+}
+
+### 7. Compare Multiple Products Across Categories
+POST {{baseUrl}}/api/v1/recommendations/compare
+Content-Type: application/json
+
+{
+  "productIds": [
+    "1cebd88a-4522-418a-a1ce-53a550695914",
+    "3a4b5c6d-7e8f-4012-93a4-b5c6d7e8f901",
+    "5c6d7e8f-9012-4234-b5c6-d7e8f9012345"
+  ]
+}
+
+### 8. Get Recommendations for Smart Home Devices
+POST {{baseUrl}}/api/v1/recommendations/recommend
+Content-Type: application/json
+
+{
+  "query": "Smart home devices and connected appliances"
+}

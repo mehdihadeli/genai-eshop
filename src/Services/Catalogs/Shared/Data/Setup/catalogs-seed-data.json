@@ -1,0 +1,164 @@
+{
+  "Products": [
+    {
+      "Id": "1cebd88a-4522-418a-a1ce-53a550695914",
+      "Name": "Wireless Bluetooth Headphones",
+      "Description": "Premium noise-cancelling wireless headphones with 30-hour battery life and ultra-comfortable ear cushions.",
+      "Price": 199.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/headphones-blue.jpg"
+    },
+    {
+      "Id": "2f8a3b1c-9d45-4e67-b8a2-1c3d5e7f9a0b",
+      "Name": "Samsung 55\" 4K Smart TV",
+      "Description": "Crystal-clear 4K UHD display with HDR, smart streaming apps, and voice control compatibility.",
+      "Price": 499.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/samsung-tv-55.jpg"
+    },
+    {
+      "Id": "3a4b5c6d-7e8f-4012-93a4-b5c6d7e8f901",
+      "Name": "Apple Watch Series 8",
+      "Description": "Advanced health monitoring, always-on Retina display, and cellular connectivity for calls without your phone.",
+      "Price": 399.00,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/apple-watch-s8.jpg"
+    },
+    {
+      "Id": "4b5c6d7e-8f90-4123-a4b5-c6d7e8f90123",
+      "Name": "Dell XPS 13 Laptop",
+      "Description": "Ultra-thin laptop with 13.4\" FHD+ display, Intel Core i7, 16GB RAM, and 512GB SSD.",
+      "Price": 1299.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/dell-xps13.jpg"
+    },
+    {
+      "Id": "5c6d7e8f-9012-4234-b5c6-d7e8f9012345",
+      "Name": "iPhone 14 Pro",
+      "Description": "6.1\" Super Retina XDR display, A16 Bionic chip, 48MP main camera, and Dynamic Island.",
+      "Price": 999.00,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/iphone14-pro.jpg"
+    },
+    {
+      "Id": "6d7e8f90-1234-4345-c6d7-e8f901234567",
+      "Name": "LG Front-Load Washing Machine",
+      "Description": "4.5 cu. ft. capacity with TurboWash 360°, steam cleaning, and Wi-Fi connectivity.",
+      "Price": 849.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/lg-washer.jpg"
+    },
+    {
+      "Id": "7e8f9012-3456-4456-d7e8-f90123456789",
+      "Name": "Samsung French Door Refrigerator",
+      "Description": "28 cu. ft. capacity with FlexZone drawer, water/ice dispenser, and Family Hub touchscreen.",
+      "Price": 2499.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/samsung-fridge.jpg"
+    },
+    {
+      "Id": "8f901234-5678-4567-e8f9-0123456789ab",
+      "Name": "LG 27\" UltraFine 4K Monitor",
+      "Description": "P3 color gamut, USB-C connectivity, and HDR10 support for creative professionals.",
+      "Price": 599.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/lg-monitor-27.jpg"
+    },
+    {
+      "Id": "90123456-789a-4678-f901-23456789abcd",
+      "Name": "Logitech MX Mechanical Keyboard",
+      "Description": "Low-profile mechanical switches, multi-device Bluetooth, and customizable backlighting.",
+      "Price": 149.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/logitech-keyboard.jpg"
+    },
+    {
+      "Id": "a1234567-89ab-4789-0123-456789abcdef",
+      "Name": "Razer DeathAdder V3 Mouse",
+      "Description": "30K DPI optical sensor, 9 programmable buttons, and ergonomic right-handed design.",
+      "Price": 79.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/razer-mouse.jpg"
+    },
+    {
+      "Id": "b2345678-9abc-489a-1234-56789abcdef0",
+      "Name": "Sony WH-1000XM5 Headphones",
+      "Description": "Industry-leading noise cancellation, 30-hour battery, and crystal-clear call quality.",
+      "Price": 349.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/sony-headphones.jpg"
+    },
+    {
+      "Id": "c3456789-abcd-49ab-2345-6789abcdef01",
+      "Name": "iPad Air (5th Gen)",
+      "Description": "10.9\" Liquid Retina display, M1 chip, and support for Apple Pencil 2nd gen.",
+      "Price": 599.00,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/ipad-air.jpg"
+    },
+    {
+      "Id": "d456789a-bcde-4abc-3456-789abcdef012",
+      "Name": "Bose QuietComfort Earbuds II",
+      "Description": "Personalized noise cancellation, 6-hour battery life, and secure-fit design.",
+      "Price": 279.00,
+      "IsAvailable": false,
+      "ImageUrl": "https://example.com/images/bose-earbuds.jpg"
+    },
+    {
+      "Id": "e56789ab-cdef-4bcd-4567-89abcdef0123",
+      "Name": "ASUS ROG Gaming Laptop",
+      "Description": "17.3\" FHD 360Hz display, RTX 4070 GPU, Intel Core i9, and 32GB RAM.",
+      "Price": 2299.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/asus-rog-laptop.jpg"
+    },
+    {
+      "Id": "f6789abc-def0-4cde-5678-9abcdef01234",
+      "Name": "Google Pixel 7 Pro",
+      "Description": "6.7\" QHD+ LTPO OLED display, Tensor G2 chip, and 50MP main camera with 5x telephoto.",
+      "Price": 899.00,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/pixel7-pro.jpg"
+    },
+    {
+      "Id": "0789abcd-ef01-4def-6789-abcdef012345",
+      "Name": "Dyson V15 Detect Vacuum",
+      "Description": "Laser dust detection, 60-minute runtime, and whole-machine HEPA filtration.",
+      "Price": 749.99,
+      "IsAvailable": false,
+      "ImageUrl": "https://example.com/images/dyson-vacuum.jpg"
+    },
+    {
+      "Id": "189abcde-f012-4ef0-789a-bcdef0123456",
+      "Name": "Samsung Galaxy Tab S9",
+      "Description": "11\" LTPS display, Snapdragon 8 Gen 2, S Pen included, and IP68 water resistance.",
+      "Price": 799.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/galaxy-tab-s9.jpg"
+    },
+    {
+      "Id": "29abcdef-0123-4f01-89ab-cdef01234567",
+      "Name": "Anker 737 Power Bank",
+      "Description": "24,000mAh capacity with 140W USB-C output, digital display, and GaN technology.",
+      "Price": 129.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/anker-powerbank.jpg"
+    },
+    {
+      "Id": "3abcdef0-1234-4012-9abc-def012345678",
+      "Name": "Sonos Beam (Gen 2) Soundbar",
+      "Description": "Dolby Atmos support, voice assistant compatibility, and HDMI eARC connectivity.",
+      "Price": 449.00,
+      "IsAvailable": false,
+      "ImageUrl": "https://example.com/images/sonos-beam.jpg"
+    },
+    {
+      "Id": "4bcdef01-2345-4123-abcd-ef0123456789",
+      "Name": "Nintendo Switch OLED",
+      "Description": "7\" OLED screen, enhanced audio, 64GB storage, and improved kickstand for portable gaming.",
+      "Price": 349.99,
+      "IsAvailable": true,
+      "ImageUrl": "https://example.com/images/switch-oled.jpg"
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "ProductReviews": [
+    {
+      "Id": "a1b2c3d4-e5f6-4a1b-8c9d-0e1f2a3b4c5d",
+      "ProductId": "1cebd88a-4522-418a-a1ce-53a550695914",
+      "UserId": "f8a9b0c1-d2e3-4f5a-8b9c-0d1e2f3a4b5c",
+      "Rating": 5,
+      "Comment": "These headphones are absolutely fantastic! The noise cancellation is incredible - I can't hear anything around me when they're on. The battery life is as advertised, easily lasting through long flights. The ear cushions are super comfortable even after hours of use. Highly recommend for frequent travelers."
+    },
+    {
+      "Id": "b2c3d4e5-f6a7-4b2c-9d0e-1f2a3b4c5d6e",
+      "ProductId": "1cebd88a-4522-418a-a1ce-53a550695914",
+      "UserId": "9a8b7c6d-5e4f-4a3b-8c9d-0e1f2a3b4c5d",
+      "Rating": 4,
+      "Comment": "Great sound quality and comfortable fit. The noise cancellation works well, though I expected it to be slightly better for the price. Bluetooth connectivity is stable and the battery lasts as promised. The only downside is the case could be more compact for travel."
+    },
+    {
+      "Id": "c3d4e5f6-a7b8-4c3d-9e0f-1a2b3c4d5e6f",
+      "ProductId": "2f8a3b1c-9d45-4e67-b8a2-1c3d5e7f9a0b",
+      "UserId": "8b7c6d5e-4f3a-4b2c-9d0e-1f2a3b4c5d6e",
+      "Rating": 5,
+      "Comment": "This Samsung TV has exceeded my expectations! The 4K picture quality is stunning with vibrant colors and deep blacks. The smart features are responsive and easy to use. Setup was straightforward and the voice control works perfectly with my Google Assistant. Excellent value for money."
+    },
+    {
+      "Id": "d4e5f6a7-b8c9-4d4e-9f0a-1b2c3d4e5f6a",
+      "ProductId": "3a4b5c6d-7e8f-4012-93a4-b5c6d7e8f901",
+      "UserId": "7c6d5e4f-3a2b-4c1d-9e0f-1a2b3c4d5e6f",
+      "Rating": 4,
+      "Comment": "The Apple Watch Series 8 is a significant upgrade from previous models. The health monitoring features are comprehensive and accurate. The always-on display is very useful. Battery life could be better - it barely lasts a full day with heavy use. Overall, a great smartwatch for Apple ecosystem users."
+    },
+    {
+      "Id": "e5f6a7b8-c9d0-4e5f-9a0b-1c2d3e4f5a6b",
+      "ProductId": "4b5c6d7e-8f90-4123-a4b5-c6d7e8f90123",
+      "UserId": "6d5e4f3a-2b1c-4d0e-9f1a-2b3c4d5e6f7a",
+      "Rating": 5,
+      "Comment": "The Dell XPS 13 is hands down the best laptop I've ever owned. The build quality is premium, the keyboard is comfortable for long typing sessions, and the display is gorgeous. Performance is snappy for both work and light gaming. The thin bezels make the screen look much larger than 13 inches."
+    },
+    {
+      "Id": "f6a7b8c9-d0e1-4f6a-9b0c-1d2e3f4a5b6c",
+      "ProductId": "5c6d7e8f-9012-4234-b5c6-d7e8f9012345",
+      "UserId": "5e4f3a2b-1c0d-4e1f-9a2b-3c4d5e6f7a8b",
+      "Rating": 5,
+      "Comment": "iPhone 14 Pro is a masterpiece. The Dynamic Island is innovative and actually useful. Camera quality is phenomenal, especially in low light. The A16 chip makes everything incredibly fast. The build quality feels premium and the battery life easily gets me through a full day of heavy use."
+    },
+    {
+      "Id": "a7b8c9d0-e1f2-4a7b-9c0d-1e2f3a4b5c6d",
+      "ProductId": "6d7e8f90-1234-4345-c6d7-e8f901234567",
+      "UserId": "4f3a2b1c-0d0e-4f2a-9b3c-4d5e6f7a8b9c",
+      "Rating": 4,
+      "Comment": "This LG washer is efficient and quiet. The TurboWash feature really does clean clothes faster. The steam function is great for refreshing clothes. The app connectivity is useful for monitoring cycles. Only complaint is the door seal tends to collect water and needs regular wiping."
+    },
+    {
+      "Id": "b8c9d0e1-f2a3-4b8c-9d0e-1f2a3b4c5d6e",
+      "ProductId": "7e8f9012-3456-4456-d7e8-f90123456789",
+      "UserId": "3a2b1c0d-0e0f-4a3b-9c4d-5e6f7a8b9c0d",
+      "Rating": 5,
+      "Comment": "The Samsung Family Hub refrigerator is worth every penny. The touchscreen is responsive and integrates well with our smart home. The FlexZone drawer is perfect for storing drinks and snacks. The ice and water dispenser is fast and the water filter is easy to replace. Spacious interior with smart organization."
+    },
+    {
+      "Id": "c9d0e1f2-a3b4-4c9d-9e0f-1a2b3c4d5e6f",
+      "ProductId": "8f901234-5678-4567-e8f9-0123456789ab",
+      "UserId": "2b1c0d0e-0f1a-4b2c-9d3e-4f5a6b7c8d9e",
+      "Rating": 5,
+      "Comment": "As a graphic designer, this LG monitor is perfect for my work. The color accuracy is exceptional and the 4K resolution makes details crisp. USB-C connectivity simplifies my setup with my MacBook. The stand is sturdy and adjustable. Highly recommended for creative professionals."
+    },
+    {
+      "Id": "d0e1f2a3-b4c5-4d0e-9f0a-1b2c3d4e5f6a",
+      "ProductId": "90123456-789a-4678-f901-23456789abcd",
+      "UserId": "1c0d0e0f-1a2b-4c1d-9e2f-3a4b5c6d7e8f",
+      "Rating": 4,
+      "Comment": "The Logitech MX Mechanical Keyboard has a great typing feel. The low-profile switches are quiet yet satisfying. Multi-device switching works seamlessly. Backlighting is customizable and even. The only minor issue is the keyboard is a bit heavy for travel, but it's perfect for desk use."
+    },
+    {
+      "Id": "e1f2a3b4-c5d6-4e1f-9a0b-1c2d3e4f5a6b",
+      "ProductId": "a1234567-89ab-4789-0123-456789abcdef",
+      "UserId": "0d0e0f1a-2b3c-4d0e-9f1a-2b3c4d5e6f7a",
+      "Rating": 5,
+      "Comment": "Razer DeathAdder V3 is the best gaming mouse I've used. The sensor is incredibly precise with no lag. The ergonomic design fits my hand perfectly during long gaming sessions. The programmable buttons are useful for MMO games. Build quality feels durable and premium."
+    },
+    {
+      "Id": "f2a3b4c5-d6e7-4f2a-9b0c-1d2e3f4a5b6c",
+      "ProductId": "b2345678-9abc-489a-1234-56789abcdef0",
+      "UserId": "0e0f1a2b-3c4d-4e0f-9a1b-2c3d4e5f6a7b",
+      "Rating": 5,
+      "Comment": "Sony WH-1000XM5 headphones have the best noise cancellation I've ever experienced. The sound quality is balanced and rich. Comfort is excellent for all-day wear. Call quality is crystal clear even in noisy environments. The touch controls are intuitive. Worth the premium price."
+    },
+    {
+      "Id": "a3b4c5d6-e7f8-4a3b-9c0d-1e2f3a4b5c6d",
+      "ProductId": "c3456789-abcd-49ab-2345-6789abcdef01",
+      "UserId": "0f1a2b3c-4d5e-4f0a-9b1c-2d3e4f5a6b7c",
+      "Rating": 4,
+      "Comment": "iPad Air with M1 chip is incredibly powerful. Handles all my creative apps smoothly. Apple Pencil support is excellent for drawing and note-taking. Display is bright and colorful. Battery life is good but not exceptional. Perfect balance between performance and portability."
+    },
+    {
+      "Id": "b4c5d6e7-f8a9-4b4c-9d0e-1f2a3b4c5d6e",
+      "ProductId": "d456789a-bcde-4abc-3456-789abcdef012",
+      "UserId": "1a2b3c4d-5e6f-4a1b-9c1d-2e3f4a5b6c7d",
+      "Rating": 3,
+      "Comment": "Bose earbuds have good sound quality but the fit isn't secure for my ears during workouts. Noise cancellation is decent but not as good as over-ear headphones. Battery life is adequate but could be better. Comfortable for casual use but not ideal for active lifestyles."
+    },
+    {
+      "Id": "c5d6e7f8-a9b0-4c5d-9e0f-1a2b3c4d5e6f",
+      "ProductId": "e56789ab-cdef-4bcd-4567-89abcdef0123",
+      "UserId": "2b3c4d5e-6f7a-4b2c-9d1e-2f3a4b5c6d7e",
+      "Rating": 5,
+      "Comment": "ASUS ROG gaming laptop is an absolute beast! Handles all modern games at high settings without issues. The 360Hz display is buttery smooth for competitive gaming. Cooling system keeps temperatures reasonable even under heavy load. Keyboard has excellent feedback for gaming."
+    },
+    {
+      "Id": "d6e7f8a9-b0c1-4d6e-9f0a-1b2c3d4e5f6a",
+      "ProductId": "f6789abc-def0-4cde-5678-9abcdef01234",
+      "UserId": "3c4d5e6f-7a8b-4c3d-9e1f-2a3b4c5d6e7f",
+      "Rating": 4,
+      "Comment": "Google Pixel 7 Pro has an outstanding camera system. The telephoto lens takes amazing zoom photos. Tensor G2 provides smooth performance. Display is vibrant and bright. Battery life is good but not class-leading. Clean Android experience with timely updates."
+    },
+    {
+      "Id": "e7f8a9b0-c1d2-4e7f-9a0b-1c2d3e4f5a6b",
+      "ProductId": "0789abcd-ef01-4def-6789-abcdef012345",
+      "UserId": "4d5e6f7a-8b9c-4d4e-9f1a-2b3c4d5e6f7a",
+      "Rating": 5,
+      "Comment": "Dyson V15 Detect is revolutionary for cleaning. The laser dust detection actually works and shows hidden debris. Suction power is incredible. HEPA filtration is great for allergy sufferers. Various attachments handle all cleaning scenarios. Expensive but worth it for a clean home."
+    },
+    {
+      "Id": "f8a9b0c1-d2e3-4f8a-9b0c-1d2e3f4a5b6c",
+      "ProductId": "189abcde-f012-4ef0-789a-bcdef0123456",
+      "UserId": "5e6f7a8b-9c0d-4e5f-9a1b-2c3d4e5f6a7b",
+      "Rating": 4,
+      "Comment": "Samsung Galaxy Tab S9 is a powerful Android tablet. S Pen is responsive and great for note-taking. Display quality is excellent. Performance is smooth for multitasking. IP68 rating gives peace of mind. Would like to see better tablet-optimized apps in the Android ecosystem."
+    },
+    {
+      "Id": "a9b0c1d2-e3f4-4a9b-9c0d-1e2f3a4b5c6d",
+      "ProductId": "29abcdef-0123-4f01-89ab-cdef01234567",
+      "UserId": "6f7a8b9c-0d1e-4f6a-9b1c-2d3e4f5a6b7c",
+      "Rating": 5,
+      "Comment": "Anker 737 Power Bank is a game-changer for travel. The massive capacity can charge my laptop multiple times. 140W output is incredibly fast. The digital display showing remaining power is very useful. GaN technology keeps it relatively compact for the power it delivers."
+    },
+    {
+      "Id": "b0c1d2e3-f4a5-4b0c-9d0e-1f2a3b4c5d6e",
+      "ProductId": "3abcdef0-1234-4012-9abc-def012345678",
+      "UserId": "7a8b9c0d-1e2f-4a7b-9c1d-2e3f4a5b6c7d",
+      "Rating": 4,
+      "Comment": "Sonos Beam Gen 2 soundbar delivers impressive Dolby Atmos sound for its size. Dialogue is clear and bass is surprisingly good. Setup is simple through the app. Works well with voice assistants. Could benefit from more connectivity options, but overall excellent for movie watching."
+    },
+    {
+      "Id": "c1d2e3f4-a5b6-4c1d-9e0f-1a2b3c4d5e6f",
+      "ProductId": "4bcdef01-2345-4123-abcd-ef0123456789",
+      "UserId": "8b9c0d1e-2f3a-4b8c-9d1e-2f3a4b5c6d7e",
+      "Rating": 5,
+      "Comment": "Nintendo Switch OLED is the definitive version of the Switch. The OLED screen makes colors pop and games look amazing in handheld mode. Improved speakers provide better audio. The enhanced kickstand is much more stable for tabletop gaming. Perfect for both casual and dedicated gamers."
+    },
+    {
+      "Id": "B6D88C31-47CB-48A9-8266-C43F5D37A5EB",
+      "ProductId": "1cebd88a-4522-418a-a1ce-53a550695914",
+      "UserId": "846A18CA-40AC-4924-A3DD-CEED5C566FBB",
+      "Rating": 5,
+      "Comment": "I use these Wireless Bluetooth Headphones for my daily commute and they are a lifesaver. The noise cancellation effectively blocks out the subway noise, and the 30-hour battery means I only charge them once a week. The comfort is unmatched!"
+    },
+    {
+      "Id": "550B4236-BB11-4CC0-9876-CA80D54A3622",
+      "ProductId": "1cebd88a-4522-418a-a1ce-53a550695914",
+      "UserId": "AA18C52F-9BB9-4D35-A879-0FE9398E6FCF",
+      "Rating": 3,
+      "Comment": "The sound quality on these headphones is good, but I've had some connectivity issues when my phone is in my pocket. The comfort is great for the first hour, but then my ears start to get a bit warm. They're decent for the price."
+    },
+    {
+      "Id": "7A90D128-4BA3-4204-9D4C-AC462C469CF0",
+      "ProductId": "3a4b5c6d-7e8f-4012-93a4-b5c6d7e8f901",
+      "UserId": "7D5461C4-10E6-4566-8C00-C5F3A6DA5614",
+      "Rating": 5,
+      "Comment": "The Apple Watch Series 8 has been incredible for fitness tracking. The heart rate monitor is accurate, and the sleep tracking gives me great insights. The cellular feature is a game-changer for going on runs without my phone."
+    },
+    {
+      "Id": "41428EBE-925F-41F4-B28A-913B94143497",
+      "ProductId": "3a4b5c6d-7e8f-4012-93a4-b5c6d7e8f901",
+      "UserId": "F6134F96-1D63-46E8-993E-5E93EA923239",
+      "Rating": 4,
+      "Comment": "Upgraded from a Series 5 and the difference is noticeable. The screen is brighter and the new temperature sensor is a unique addition. I still wish the battery lasted more than a day, but it charges so fast it's a minor inconvenience."
+    },
+    {
+      "Id": "5CAB8B8D-F806-4932-ABEB-03C58311C8AD",
+      "ProductId": "4b5c6d7e-8f90-4123-a4b5-c6d7e8f90123",
+      "UserId": "E9CEE26A-09D8-42DF-963F-85E69ED12108",
+      "Rating": 5,
+      "Comment": "As a developer, the Dell XPS 13 is perfect. It's incredibly lightweight, the keyboard is a dream to type on all day, and the performance handles multiple VMs without a hiccup. The build quality is solid and it looks professional."
+    },
+    {
+      "Id": "8B46EE76-8BF4-490C-B7B6-3F8BD9B4402C",
+      "ProductId": "4b5c6d7e-8f90-4123-a4b5-c6d7e8f90123",
+      "UserId": "0CE83315-75F2-4A79-9271-678BE4AA0E7C",
+      "Rating": 4,
+      "Comment": "This laptop is a powerhouse in a tiny frame. The screen is beautiful and the performance is top-notch. My only gripe is the lack of a dedicated HDMI port, requiring me to carry a dongle for presentations. Otherwise, it's nearly perfect."
+    },
+    {
+      "Id": "14B57473-8BFE-4881-9521-25E6CDB8FB2C",
+      "ProductId": "e56789ab-cdef-4bcd-4567-89abcdef0123",
+      "UserId": "23F1CB29-08B0-4017-B847-74439974A25A",
+      "Rating": 5,
+      "Comment": "I bought this ASUS ROG Gaming Laptop for the new AAA titles, and it does not disappoint. The RTX 4070 crushes every game at max settings on the 360Hz screen. It's also surprisingly manageable for a 17-inch laptop. A true desktop replacement."
+    },
+    {
+      "Id": "F6ECCEA9-DD30-4F2B-BB8F-52BC53BD5F55",
+      "ProductId": "e56789ab-cdef-4bcd-4567-89abcdef0123",
+      "UserId": "3A160796-8FD4-4A4E-9912-2AC301B08944",
+      "Rating": 4,
+      "Comment": "The performance is insane and the cooling system is very effective, though the fans can get loud under heavy load. The keyboard is great for both gaming and typing. It's an investment, but if you're serious about gaming, it's worth it."
+    },
+    {
+      "Id": "7226B03A-B751-4C12-B7D0-777515EE38A2",
+      "ProductId": "b2345678-9abc-489a-1234-56789abcdef0",
+      "UserId": "A89B5728-81B7-4CBE-8BD8-596402FAEBB5",
+      "Rating": 5,
+      "Comment": "Upgraded from the XM4s and the Sony WH-1000XM5s are a clear step up. The noise cancellation is even more intelligent, and the call quality is phenomenal—people say it sounds like I'm in a quiet room even when I'm on a busy street."
+    },
+    {
+      "Id": "F5D3D7F0-D106-4034-8151-4C45BCDE6B30",
+      "ProductId": "b2345678-9abc-489a-1234-56789abcdef0",
+      "UserId": "1A95DCC3-7C74-4C30-8831-4D415ED380ED",
+      "Rating": 4,
+      "Comment": "The sound and noise cancellation on these Sony headphones are second to none. They are incredibly comfortable. The only reason I'm not giving 5 stars is that the case doesn't fold flat, which is a bit annoying for packing. A small flaw for an otherwise perfect product."
+    }
+  ]
+}

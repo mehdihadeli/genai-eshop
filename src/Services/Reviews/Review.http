@@ -1,0 +1,69 @@
+### Base URL
+@baseUrl = http://localhost:8000
+@productId = 4b5c6d7e-8f90-4123-a4b5-c6d7e8f90123
+@reviewId = e5f6a7b8-c9d0-4e5f-9a0b-1c2d3e4f5a6b
+@userId = 6d5e4f3a-2b1c-4d0e-9f1a-2b3c4d5e6f7a
+
+### Get reviews for a product with pagination
+GET {{baseUrl}}/api/v1/reviews/{{productId}}?PageNumber=1&PageSize=5
+Accept: application/json
+
+### Submit a new review for a product
+# @name createReview
+POST {{baseUrl}}/api/v1/reviews/{{productId}}
+Content-Type: application/json
+
+{
+  "rating": 5,
+  "comment": "Absolutely love these headphones! The noise cancellation is incredible and the battery life lasts through my entire workday."
+}
+
+### Submit a review without comment (rating only)
+POST {{baseUrl}}/api/v1/reviews/{{productId}}
+Content-Type: application/json
+
+{
+  "rating": 4
+}
+
+### Analyze product reviews with AI with Normal orchestration mode
+POST {{baseUrl}}/api/v1/reviews/{{productId}}/analyze?AgentOrchestrationType=Normal
+Accept: application/json
+
+### Analyze product reviews with AI with Sequential orchestration mode
+POST {{baseUrl}}/api/v1/reviews/{{productId}}/analyze?AgentOrchestrationType=Sequential
+Accept: application/json
+
+### Analyze product reviews with AI with GroupChat orchestration mode
+POST {{baseUrl}}/api/v1/reviews/{{productId}}/analyze?AgentOrchestrationType=GroupChat
+Accept: application/json
+
+### Analyze product reviews with AI
+POST {{baseUrl}}/api/v1/reviews/{{productId}}/analyze
+Accept: application/json
+
+
+### Get review trends and patterns (last 30 days)
+GET {{baseUrl}}/api/v1/reviews/{{productId}}/trends?DaysBack=30
+Accept: application/json
+
+### Get review trends for last 90 days
+GET {{baseUrl}}/api/v1/reviews/{{productId}}/trends?DaysBack=90
+Accept: application/json
+
+### Compare multiple products by reviews
+# @name compareProducts
+POST {{baseUrl}}/api/v1/reviews/compare
+Content-Type: application/json
+
+{
+  "productIds": [
+    "3a4b5c6d-7e8f-4012-93a4-b5c6d7e8f901",
+    "5c6d7e8f-9012-4234-b5c6-d7e8f9012345",
+    "6d7e8f90-1234-4345-c6d7-e8f901234567"
+  ]
+}
+
+### Get AI-generated quality summary for a product
+GET {{baseUrl}}/api/v1/reviews/{{productId}}/quality-summary
+Accept: application/json

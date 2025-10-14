@@ -1,0 +1,21 @@
+<Project>
+  <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
+  <!-- The Label attribute is organizational and does not affect property inheritance.-->
+  <PropertyGroup Label="Framework">
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Label="Product">
+    <Product>FoodDeliveryGenAI</Product>
+  </PropertyGroup>
+  <PropertyGroup Label="Build">
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
+  </PropertyGroup>
+  <ItemGroup Label="Testing Imports" Condition="$(MSBuildProjectFullPath.Contains('Tests'))">
+    <Using Include="Xunit" />
+    <Using Include="Shouldly" />
+  </ItemGroup>
+</Project>

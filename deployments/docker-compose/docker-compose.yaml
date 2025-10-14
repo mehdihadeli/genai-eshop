@@ -1,0 +1,54 @@
+name: ollama-docker-compose
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - ${POSTGRES_HOST_PORT:-5432}:${POSTGRES_PORT:-5432}
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+    networks:
+      - infrastructure
+
+#  ollama:
+#    image: ollama/ollama:0.12.1
+#    volumes:
+#      - ollama:/root/.ollama
+#    ports:
+#       - 11434:11434
+#    container_name: ollama
+#    pull_policy: always
+#    healthcheck:
+#      test: ollama --version || exit 1
+#    environment:
+#       - OLLAMA_DEBUG=1
+#    tty: true
+#    restart: unless-stopped
+#    networks:
+#      - infrastructure
+        
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    restart: unless-stopped
+    ports:
+      # ui port
+      - 6333:6333
+      # grpc port
+      - 6334:6334
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - infrastructure
+      
+networks:
+  infrastructure:
+    name: infrastructure
+    driver: bridge
+
+volumes:
+  ollama: {}
+  qdrant_data: {}

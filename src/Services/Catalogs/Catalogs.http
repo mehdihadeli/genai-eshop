@@ -1,0 +1,56 @@
+### Base URL
+@baseUrl = http://localhost:5000
+@productId = a1234567-89ab-4789-0123-456789abcdef
+
+### Get all products with pagination
+GET {{baseUrl}}/api/v1/products?PageNumber=1&PageSize=5
+Accept: application/json
+
+### Search Products - REGULAR Search (Default)
+# Regular text search with keywords
+GET {{baseUrl}}/api/v1/products/search?SearchTerm=Apple Watch&Keywords=Laptop&Keywords=Monitor
+    &SearchType=Regular&PageNumber=1&PageSize=5
+Accept: application/json
+
+### Search Products - SEMANTIC Search
+# Semantic search understanding meaning and context
+GET {{baseUrl}}/api/v1/products/search?SearchTerm=Apple Watch&SearchType=Semantic&PageNumber=1&PageSize=5
+Accept: application/json
+
+### Search Products - HYBRID Search
+# Combines regular and semantic search
+GET {{baseUrl}}/api/v1/products/search?SearchTerm=Apple Watch&Keywords=Laptop&Keywords=Monitor&SearchType=Hybrid&PageNumber=1&PageSize=5
+Accept: application/json
+
+### Get product by ID
+GET {{baseUrl}}/api/v1/products/{{productId}}
+Accept: application/json
+
+### Create a new product
+# @name createProduct
+POST {{baseUrl}}/api/v1/products
+Content-Type: application/json
+
+{
+  "Name": "MacBook Air M2 (13.6\")",
+  "Description": "Slim aluminum design, M2 chip, 16GB RAM, 512GB SSD, and all-day battery life.",
+  "Price": 1499.00,
+  "IsAvailable": true,
+  "ImageUrl": "https://example.com/images/macbook-air-m2.jpg"
+}
+
+### Update a product (requires valid productId)
+PUT {{baseUrl}}/api/v1/products/{{productId}}
+Content-Type: application/json
+
+{
+  "Id": "a1234567-89ab-4789-0123-456789abcdef",
+  "Name": "Razer DeathAdder V3 Mouse",
+  "Description": "30K DPI optical sensor, 9 programmable buttons, and ergonomic right-handed design.",
+  "Price": 79.99,
+  "IsAvailable": true,
+  "ImageUrl": "https://example.com/images/razer-mouse.jpg"
+}
+
+### Delete a product (requires valid productId)
+DELETE {{baseUrl}}/api/v1/products/{{productId}}
