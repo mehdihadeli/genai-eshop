@@ -7,11 +7,12 @@
 
 ## Features
 
-- ✅ Using `Qdrant` Semantic Kernel Connector for storing vector data for doing `Semantic Meaning Search` and `Hybrid Search` using vector data and semantic kernel
-- ✅ Using Semantic Kernel `EmbeddingGenerator` based on chosen providers like `Ollama`, `AzureOpenAI`, and `OpenAI` for generating vector data for semantic search
-- ✅ Using Semantic Kernel `ChatCompletion` based on chosen providers like `Ollama`, `AzureOpenAI`, and `OpenAI` for communicating with different models for generating responses
+- ✅ Using [microsoft/agent-framework](https://github.com/microsoft/agent-framework) for multi-agent orchestrations
+- ✅ Using `Qdrant Semantic Kernel Connector` for storing vector data for doing `Semantic Meaning Search` and `Hybrid Search` using vector data and semantic kernel
+- ✅ Using [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) `EmbeddingGenerator` based on chosen providers like `Ollama`, `AzureOpenAI`, and `OpenAI` for generating vector data for semantic search
+- ✅ Using [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) `ChatCompletion` based on chosen providers like `Ollama`, `AzureOpenAI`, and `OpenAI` for communicating with different models for generating responses
 - ✅ Using `Mcp tools` based on `http` and json-rpc for calling endpoints in our Mcp server and calling third party tools by LLMs for Fine-grained functions
-- ✅ Using `Multi-Agent Orchestrations` for `local` and `external` agents communication using agents `parent child agent relationships` and different Semantic Kernel’s `Agent Orchestration Patterns` like GroupChat and Sequential orchestration
+- ✅ Using `Multi-Agent Orchestrations` for `local` and `external` agents communication using agents `parent child agent relationships` and different [Microsoft Agent Framework](https://github.com/microsoft/agent-framework) `Orchestration Patterns` like `Parent-Child`, `GroupChat` and `Sequential` orchestration.
 - ✅ Using `Agent2Agent Protocol (A2A)` protocol based on http and json-rpc for calling and using external agents
 - ✅ Using `Vertical Slice Architecture` as a high-level architecture
 - ✅ Using `Minimal APIs` for handling requests
