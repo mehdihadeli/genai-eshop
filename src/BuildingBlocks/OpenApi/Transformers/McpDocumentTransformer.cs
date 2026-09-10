@@ -1,9 +1,9 @@
+using System.Net.Http;
 using System.Net.Mime;
+using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.OpenApi;
-using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Interfaces;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using ModelContextProtocol.Protocol;
 
 namespace BuildingBlocks.OpenApi.Transformers;
@@ -18,15 +18,17 @@ public sealed class McpDocumentTransformer : IOpenApiDocumentTransformer
     {
         var pathItem = new OpenApiPathItem();
 
+        // OpenAPI.NET v2 uses IOpenApiSchema, JsonSchemaType, HttpMethod, and typed references.
+        // https://github.com/microsoft/OpenAPI.NET/blob/main/docs/upgrade-guide.md
         // Ensure components and required schemas exist
         document.Components ??= new OpenApiComponents();
-        document.Components.Schemas ??= new Dictionary<string, OpenApiSchema>();
+        document.Components.Schemas ??= new Dictionary<string, IOpenApiSchema>();
 
         if (!document.Components.Schemas.ContainsKey(nameof(JsonRpcRequest)))
         {
             document.Components.Schemas[nameof(JsonRpcRequest)] = new OpenApiSchema
             {
-                Type = "object",
+                Type = JsonSchemaType.Object,
                 Description = "JSON-RPC request payload",
                 AdditionalPropertiesAllowed = true,
             };
@@ -36,20 +38,20 @@ public sealed class McpDocumentTransformer : IOpenApiDocumentTransformer
         {
             document.Components.Schemas[nameof(JsonRpcResponse)] = new OpenApiSchema
             {
-                Type = "object",
+                Type = JsonSchemaType.Object,
                 Description = "JSON-RPC response payload",
                 AdditionalPropertiesAllowed = true,
             };
         }
 
         pathItem.AddOperation(
-            OperationType.Post,
+            HttpMethod.Post,
             new OpenApiOperation
             {
                 Summary = "Get MCP Components",
                 Extensions = new Dictionary<string, IOpenApiExtension>
                 {
-                    ["x-ms-agentic-protocol"] = new OpenApiString("mcp-streamable-1.0"),
+                    ["x-ms-agentic-protocol"] = new JsonNodeExtension(JsonValue.Create("mcp-streamable-1.0")),
                 },
                 OperationId = "InvokeMCP",
                 Responses = new()
@@ -61,14 +63,7 @@ public sealed class McpDocumentTransformer : IOpenApiDocumentTransformer
                         {
                             [MediaTypeNames.Application.Json] = new()
                             {
-                                Schema = new OpenApiSchema
-                                {
-                                    Reference = new OpenApiReference
-                                    {
-                                        Type = ReferenceType.Schema,
-                                        Id = nameof(JsonRpcResponse),
-                                    },
-                                },
+                                Schema = new OpenApiSchemaReference(nameof(JsonRpcResponse)),
                             },
                         },
                     },
@@ -82,14 +77,7 @@ public sealed class McpDocumentTransformer : IOpenApiDocumentTransformer
                     {
                         [MediaTypeNames.Application.Json] = new()
                         {
-                            Schema = new OpenApiSchema
-                            {
-                                Reference = new OpenApiReference
-                                {
-                                    Type = ReferenceType.Schema,
-                                    Id = nameof(JsonRpcRequest),
-                                },
-                            },
+                            Schema = new OpenApiSchemaReference(nameof(JsonRpcRequest)),
                         },
                     },
                 },

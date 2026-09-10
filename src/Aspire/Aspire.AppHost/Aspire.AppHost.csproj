@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <!--  https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/dotnet-aspire-sdk-->
   <Sdk Name="Aspire.AppHost.Sdk" Version="$(AspireVersion)" />
   <PropertyGroup>
@@ -7,16 +6,14 @@
     <UserSecretsId>eb13ea12-cd51-422f-a583-2bfd823d4c66</UserSecretsId>
     <NoWarn>ASPIREINTERACTION001</NoWarn>
   </PropertyGroup>
-  
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost"  />
+    <PackageReference Include="Aspire.Hosting.AppHost" />
     <PackageReference Include="Aspire.Hosting.PostgreSQL" />
     <PackageReference Include="Aspire.Hosting.Qdrant" />
     <PackageReference Include="Aspire.Hosting.Redis" />
     <PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" />
     <PackageReference Include="Humanizer.Core" />
   </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\..\Mcp\McpServer\McpServer.csproj" />
     <ProjectReference Include="..\..\Services\Carts\Carts.csproj" />
@@ -24,7 +21,6 @@
     <ProjectReference Include="..\..\Services\Orders\Orders.csproj" />
     <ProjectReference Include="..\..\Services\Recommendation\Recommendation.csproj" />
     <ProjectReference Include="..\..\Services\Reviews\Reviews.csproj" />
-    <ProjectReference Include="..\..\Services\Shared\Shared.csproj"  IsAspireProjectResource="false" />
+    <ProjectReference Include="..\..\Services\Shared\Shared.csproj" IsAspireProjectResource="false" />
   </ItemGroup>
-
 </Project>

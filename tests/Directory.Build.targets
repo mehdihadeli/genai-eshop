@@ -1,0 +1,10 @@
+<Project>
+  <ItemGroup Condition="$([System.String]::Copy('$(MSBuildProjectName)').EndsWith('Tests'))">
+    <PackageReference Remove="Microsoft.NET.Test.Sdk" />
+    <PackageReference Remove="Microsoft.VisualStudio.TestPlatform" />
+    <PackageReference Remove="xunit.v3.core.mtp-v2" />
+    <PackageReference Remove="xunit.v3.assert" />
+    <PackageReference Remove="xunit.v3.extensibility.core" />
+    <PackageReference Remove="xunit.runner.visualstudio" />
+  </ItemGroup>
+</Project>

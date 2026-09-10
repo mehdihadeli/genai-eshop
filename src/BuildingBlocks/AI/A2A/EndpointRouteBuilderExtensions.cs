@@ -10,17 +10,19 @@ public static class EndpointRouteBuilderExtensions
 {
     public const string AgentCardPath = ".well-known/agent-card.json";
 
+    // IA2ARequestHandler replaced the removed ITaskManager API in the current A2A SDK.
+    // https://learn.microsoft.com/en-us/agent-framework/hosting/self-hosting/a2a/server
     // https://github.com/microsoft/semantic-kernel/issues/13189
     // https://github.com/a2aproject/a2a-dotnet/blob/main/src/A2A.AspNetCore/A2AEndpointRouteBuilderExtensions.cs#L52
     // https://github.com/a2aproject/a2a-dotnet/blob/main/src/A2A/Client/A2ACardResolver.cs#L24
     public static IEndpointConventionBuilder MapCustomWellKnownAgentCard(
         this IEndpointRouteBuilder endpoints,
-        ITaskManager taskManager,
+        IA2ARequestHandler requestHandler,
         [StringSyntax("Route")] string agentPath
     )
     {
         ArgumentNullException.ThrowIfNull(endpoints);
-        ArgumentNullException.ThrowIfNull(taskManager);
+        ArgumentNullException.ThrowIfNull(requestHandler);
         ArgumentException.ThrowIfNullOrEmpty(agentPath);
 
         var routeGroup = endpoints.MapGroup("");
@@ -31,8 +33,10 @@ public static class EndpointRouteBuilderExtensions
             cardPath,
             async (HttpRequest request, CancellationToken cancellationToken) =>
             {
-                var agentUrl = $"{request.Scheme}://{request.Host}/{agentPathWithoutSlash}";
-                var agentCard = await taskManager.OnAgentCardQuery(agentUrl, cancellationToken);
+                var agentCard = await requestHandler.GetExtendedAgentCardAsync(
+                    new GetExtendedAgentCardRequest(),
+                    cancellationToken
+                );
                 return Results.Ok(agentCard);
             }
         );

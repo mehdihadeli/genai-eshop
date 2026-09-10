@@ -43,10 +43,10 @@ public sealed class AnalyzeProductReviewsHandler(
         switch (command.AgentOrchestrationType)
         {
             case AgentOrchestrationType.Normal:
-                var agentThread = reviewsAgent.GetNewThread();
+                // RunAsync creates a session when none is supplied; GetNewThread was removed from the current API.
+                // https://learn.microsoft.com/en-us/agent-framework/concepts/agents/custom-agents
                 var agentResponse = await reviewsAgent.RunAsync(
                     message: analysisRequest,
-                    thread: agentThread,
                     options: ChatOptionsDefaults.GetDefaultAgentRunOptions(agentFrameworkOptions.Value),
                     cancellationToken: ct
                 );

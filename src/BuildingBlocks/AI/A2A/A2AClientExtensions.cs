@@ -48,8 +48,8 @@ public static class A2AClientExtensions
             }
         );
 
-        // https://a2aprotocol.ai/docs/guide/a2a-dotnet-sdk#_10-2-observability
-        builder.Services.AddOpenTelemetry().WithTracing(tracing => tracing.AddSource(TaskManager.ActivitySource.Name));
+        // A2A SDK 1.20 no longer exposes TaskManager.ActivitySource; Agent Framework tracing is registered centrally.
+        // https://learn.microsoft.com/en-us/agent-framework/integrations/by-component/agent-services/a2a
     }
 
     // ref: https://learn.microsoft.com/en-us/agent-framework/user-guide/agents/agent-types/a2a-agent?pivots=programming-language-csharp

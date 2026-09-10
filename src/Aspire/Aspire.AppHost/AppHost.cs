@@ -1,6 +1,9 @@
 using BuildingBlocks.Constants;
+using BuildingBlocks.Env;
 using GenAIEshop.Shared.Constants;
 using Projects;
+
+DotEnv.Load();
 
 IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 

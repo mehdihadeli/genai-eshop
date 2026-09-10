@@ -1,0 +1,20 @@
+<Project>
+  <Import Project="..\Directory.Build.props" />
+  <PropertyGroup
+    Label="Testing Platform"
+    Condition="$([System.String]::Copy('$(MSBuildProjectName)').EndsWith('Tests'))"
+  >
+    <IsTestProject>true</IsTestProject>
+    <OutputType>Exe</OutputType>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+  </PropertyGroup>
+  <ItemGroup Label="Testing Imports" Condition="$([System.String]::Copy('$(MSBuildProjectName)').EndsWith('Tests'))">
+    <Using Include="Xunit" />
+    <Using Include="Shouldly" />
+    <PackageReference Include="Shouldly" />
+    <PackageReference Include="xunit.v3.mtp-v2" />
+    <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" />
+  </ItemGroup>
+</Project>

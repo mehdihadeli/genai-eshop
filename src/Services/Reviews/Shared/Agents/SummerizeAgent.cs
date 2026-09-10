@@ -44,14 +44,14 @@ public static class SummerizeAgent
 
     public static AIAgent CreateAgent(IChatClient chatClient)
     {
-        return chatClient.CreateAIAgent(name: Name, description: Description, instructions: Instructions);
+        return new ChatClientAgent(chatClient, name: Name, description: Description, instructions: Instructions);
     }
 
     public static AgentCard GetAgentCard()
     {
         var capabilities = new AgentCapabilities { Streaming = false, PushNotifications = false };
 
-        var summarize = new AgentSkill
+        var summarize = new A2A.AgentSkill
         {
             Id = "id_summerize_agent",
             Name = Name,
