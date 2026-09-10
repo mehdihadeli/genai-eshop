@@ -139,8 +139,8 @@ public static class DependencyInjectionExtensions
                 var azureOpenAiApiClientBuilder = builder.AddAzureOpenAIClient(
                     new AzureOpenAIApiClientSettings
                     {
-                        ApiKey = options.ChatApiKey,
-                        Endpoint = options.ChatEndpoint,
+                        ApiKey = options.EmbeddingApiKey,
+                        Endpoint = options.EmbeddingEndpoint,
                         DisableTracing = false,
                     }
                 );
@@ -158,8 +158,8 @@ public static class DependencyInjectionExtensions
                 var openAiApiClientBuilder = builder.AddOpenAIClient(
                     new OpenAIApiClientSettings
                     {
-                        ApiKey = options.ChatApiKey,
-                        Endpoint = options.ChatEndpoint,
+                        ApiKey = options.EmbeddingApiKey,
+                        Endpoint = options.EmbeddingEndpoint,
                         DisableTracing = false,
                     }
                 );
@@ -178,6 +178,8 @@ public static class DependencyInjectionExtensions
 
     private static void AddOpenTelemetry(IHostApplicationBuilder builder)
     {
+        // TaskManager.ActivitySource was removed from the current A2A SDK; use current Agent Framework sources.
+        // https://learn.microsoft.com/en-us/agent-framework/user-guide/agents/agent-observability?pivots=programming-language-csharp
         // https://learn.microsoft.com/en-us/agent-framework/tutorials/agents/enable-observability?pivots=programming-language-csharp
         // https://learn.microsoft.com/en-us/agent-framework/user-guide/agents/agent-observability?pivots=programming-language-csharp
         builder
@@ -191,7 +193,5 @@ public static class DependencyInjectionExtensions
                     .AddSource("Microsoft.Agents.AI.Runtime.Abstractions.InMemoryActorStateStorage")
             )
             .WithMetrics(x => x.AddMeter("*Microsoft.Agents.AI"));
-
-        builder.Services.AddOpenTelemetry().WithTracing(tracing => tracing.AddSource(TaskManager.ActivitySource.Name));
     }
 }

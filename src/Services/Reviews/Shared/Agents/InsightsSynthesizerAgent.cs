@@ -55,14 +55,14 @@ public class InsightsSynthesizerAgent
 
     public static AIAgent CreateAgent(IChatClient chatClient)
     {
-        return chatClient.CreateAIAgent(name: Name, description: Description, instructions: Instructions);
+        return new ChatClientAgent(chatClient, name: Name, description: Description, instructions: Instructions);
     }
 
     public static AgentCard GetAgentCard()
     {
         var capabilities = new AgentCapabilities { Streaming = false, PushNotifications = false };
 
-        var insightsSkill = new AgentSkill
+        var insightsSkill = new A2A.AgentSkill
         {
             Id = "id_insights_synthesizer",
             Name = Name,

@@ -113,7 +113,8 @@ public static class ProductRecommendationAgent
 
         // https://learn.microsoft.com/en-us/agent-framework/user-guide/agents/agent-types/?pivots=programming-language-csharp
         // https://learn.microsoft.com/en-us/agent-framework/user-guide/agents/agent-types/chat-client-agent?pivots=programming-language-csharp
-        return chatClient.CreateAIAgent(
+        return new ChatClientAgent(
+            chatClient,
             name: Name,
             description: Description,
             instructions: Instructions,
@@ -125,7 +126,7 @@ public static class ProductRecommendationAgent
     {
         var capabilities = new AgentCapabilities { Streaming = false, PushNotifications = false };
 
-        var recommendationSkill = new AgentSkill
+        var recommendationSkill = new A2A.AgentSkill
         {
             Id = "id_product_recommendation_agent",
             Name = Name,

@@ -4,7 +4,7 @@ using Asp.Versioning.ApiExplorer;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Primitives;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 
 namespace BuildingBlocks.OpenApi;
 
@@ -120,7 +120,12 @@ public static class OpenApiOptionsExtensions
                 {
                     if (schema.Required?.Contains(property.Key) != true)
                     {
-                        property.Value.Nullable = false;
+                        // OpenAPI.NET v2 represents nullable schema types with JsonSchemaType flags.
+                        // https://github.com/microsoft/OpenAPI.NET/blob/main/docs/upgrade-guide.md
+                        if (property.Value is OpenApiSchema openApiSchema)
+                        {
+                            openApiSchema.Type &= ~JsonSchemaType.Null;
+                        }
                     }
                 }
 

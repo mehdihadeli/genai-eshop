@@ -39,7 +39,8 @@ public static class ReviewsCollectorAgent
         // https://github.com/microsoft/agent-framework/blob/9148392d00dafa47a95178622f3800f89bbf0425/dotnet/samples/GettingStarted/Agents/Agent_Step15_Plugins/Program.cs
         var reviewsFunctionTools = reviewsTool.AsAITools();
 
-        return chatClient.CreateAIAgent(
+        return new ChatClientAgent(
+            chatClient,
             name: Name,
             description: Description,
             instructions: Instructions,
@@ -51,7 +52,7 @@ public static class ReviewsCollectorAgent
     {
         var capabilities = new AgentCapabilities { Streaming = false, PushNotifications = false };
 
-        var dataRetrievalSkill = new AgentSkill
+        var dataRetrievalSkill = new A2A.AgentSkill
         {
             Id = "id_data_retrieval_agent",
             Name = Name,

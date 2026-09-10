@@ -4,19 +4,52 @@ public static class DotEnv
 {
     public static void Load(string? filePath = null)
     {
-        filePath ??= Path.Combine(Directory.GetCurrentDirectory(), ".env");
+        if (filePath is null)
+        {
+            foreach (var startDirectory in new[] { Directory.GetCurrentDirectory(), AppContext.BaseDirectory })
+            {
+                var directory = new DirectoryInfo(startDirectory);
+                while (directory is not null)
+                {
+                    var candidate = Path.Combine(directory.FullName, ".env");
+                    if (File.Exists(candidate))
+                    {
+                        filePath = candidate;
+                        break;
+                    }
 
-        if (!File.Exists(filePath))
+                    directory = directory.Parent;
+                }
+
+                if (filePath is not null)
+                    break;
+            }
+        }
+
+        if (filePath is null || !File.Exists(filePath))
             return;
 
-        foreach (var line in File.ReadAllLines(filePath))
+        foreach (var rawLine in File.ReadLines(filePath))
         {
-            var parts = line.Split('=', StringSplitOptions.RemoveEmptyEntries);
-
-            if (parts.Length != 2)
+            var line = rawLine.Trim();
+            if (line.Length == 0 || line.StartsWith('#'))
                 continue;
 
-            Environment.SetEnvironmentVariable(parts[0], parts[1]);
+            if (line.StartsWith("export ", StringComparison.Ordinal))
+                line = line[7..].TrimStart();
+
+            var separatorIndex = line.IndexOf('=', StringComparison.Ordinal);
+            if (separatorIndex <= 0)
+                continue;
+
+            var key = line[..separatorIndex].Trim();
+            var value = line[(separatorIndex + 1)..].Trim();
+
+            if (value.Length >= 2 && value[0] == value[^1] && (value[0] == '\'' || value[0] == '"'))
+                value = value[1..^1];
+
+            // Keep process/container-provided secrets ahead of local .env values.
+            Environment.SetEnvironmentVariable(key, Environment.GetEnvironmentVariable(key) ?? value);
         }
     }
 }

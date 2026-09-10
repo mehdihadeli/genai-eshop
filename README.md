@@ -27,7 +27,7 @@
 
 ### Prerequisites
 
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/)
+- [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/)
 - [Docker](https://www.docker.com/get-started)
 - [Aspire CLI](https://learn.microsoft.com/en-us/dotnet/aspire/cli/install)
 
@@ -60,6 +60,68 @@ aspire run
 
 > Note:The `Aspire dashboard` will be available at:
 > `https://localhost:17056` and `http://localhost:15234`
+
+### Local Secrets
+
+Copy [.env.sample](.env.sample) to `.env` in the repository root, then replace placeholder values. The `.env` file is ignored by Git and must never be committed:
+
+```bash
+cp .env.sample .env
+```
+
+Configure the AI provider with `AgentFrameworkOptions__...` variables. The double underscore maps to nested .NET configuration sections:
+
+```dotenv
+# Provider selection. DeepSeek uses the OpenAI-compatible provider.
+AgentFrameworkOptions__ChatProviderType=OpenAI
+AgentFrameworkOptions__EmbeddingProviderType=OpenAI
+
+# DeepSeek OpenAI-compatible API settings.
+AgentFrameworkOptions__ChatEndpoint="https://api.deepseek.com/v1"
+AgentFrameworkOptions__ChatApiKey="set-your-local-key"
+AgentFrameworkOptions__ChatApiVersion=
+AgentFrameworkOptions__ChatDeploymentName=deepseek-v4-flash
+AgentFrameworkOptions__ChatModel=deepseek-v4-flash
+
+# DeepSeek embedding settings.
+AgentFrameworkOptions__EmbeddingEndpoint="https://api.deepseek.com/v1"
+AgentFrameworkOptions__EmbeddingApiKey="set-your-local-key"
+AgentFrameworkOptions__EmbeddingApiVersion=
+AgentFrameworkOptions__EmbeddingDeploymentName=deepseek-v4-flash
+AgentFrameworkOptions__EmbeddingModel=deepseek-v4-flash
+
+# Optional agent behavior settings.
+AgentFrameworkOptions__Temperature=0.2
+AgentFrameworkOptions__SearchThreshold=0.4
+AgentFrameworkOptions__MaximumInvocationCount=10
+```
+
+Provider notes:
+
+- **DeepSeek**: select `OpenAI` for both provider types, use `https://api.deepseek.com/v1`, and set both API keys and model names to the DeepSeek values.
+- **OpenAI-compatible providers**: select `OpenAI`, set the provider endpoint and API key, and use the provider's model name for `ChatModel` and `EmbeddingModel`.
+- **Ollama**: set both endpoints to the local Ollama URL, such as `http://localhost:11434`, and set the chat and embedding model names. API keys and API versions are not required.
+
+### GitHub Actions Configuration
+
+CI reads AI configuration from repository Actions settings instead of storing values in workflow files. Add this repository secret:
+
+- `DEEPSEEK_API_KEY`: DeepSeek API key used for chat and embedding tests.
+
+Add these repository variables when overriding defaults:
+
+- `AGENT_FRAMEWORK_CHAT_PROVIDER_TYPE`
+- `AGENT_FRAMEWORK_EMBEDDING_PROVIDER_TYPE`
+- `AGENT_FRAMEWORK_CHAT_ENDPOINT`
+- `AGENT_FRAMEWORK_EMBEDDING_ENDPOINT`
+- `AGENT_FRAMEWORK_CHAT_DEPLOYMENT_NAME`
+- `AGENT_FRAMEWORK_CHAT_MODEL`
+- `AGENT_FRAMEWORK_EMBEDDING_DEPLOYMENT_NAME`
+- `AGENT_FRAMEWORK_EMBEDDING_MODEL`
+
+Configure them under **Settings > Secrets and variables > Actions**. Keep API keys in **Secrets**, never in **Variables** or workflow YAML. Fork pull requests run build and unit-test jobs only because GitHub does not expose repository secrets to fork workflows.
+
+The application loads `.env` before building service configuration. `AgentFrameworkOptions__...` values override matching appsettings values. Existing process or container environment variables take precedence over `.env` values. Blank lines, comments, `export KEY=value`, quoted values, and values containing `=` are supported. Aspire supplies Postgres, Redis, and Qdrant connection values when running the AppHost. Keep real API keys only in local `.env`; blank or placeholder API-key values in `.env.sample` are not valid credentials.
 
 #### Using Docker-Compose
 

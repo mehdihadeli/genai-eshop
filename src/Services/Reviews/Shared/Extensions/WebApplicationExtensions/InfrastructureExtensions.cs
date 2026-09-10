@@ -4,7 +4,6 @@ using BuildingBlocks.AI.AgentFramework;
 using BuildingBlocks.OpenApi;
 using GenAIEshop.Reviews.Shared.Agents;
 using Microsoft.Agents.AI;
-using Microsoft.Agents.AI.A2A;
 
 namespace GenAIEshop.Reviews.Shared.Extensions.WebApplicationExtensions;
 
@@ -28,6 +27,8 @@ public static class InfrastructureExtensions
         // https://github.com/microsoft/semantic-kernel/issues/13189
         // https://github.com/a2aproject/a2a-dotnet/tree/main/samples
         // https://github.com/microsoft/semantic-kernel/tree/main/dotnet/samples/Demos/A2AClientServer
+        // Current Agent Framework A2A hosting maps HTTP+JSON and JSON-RPC endpoints directly from AIAgent.
+        // https://learn.microsoft.com/en-us/agent-framework/hosting/self-hosting/a2a/server
         app.MapHostReviewA2AAgent();
         app.MapHostSummarizeA2AAgent();
         app.MapHostSentimentA2AAgent();
@@ -44,12 +45,9 @@ public static class InfrastructureExtensions
         var reviewAgent = app.Services.GetRequiredKeyedService<AIAgent>(
             GenAIEshop.Shared.Constants.Agents.ReviewsAgent
         );
-        var hostAgent = new A2AHostAgent(reviewAgent, ReviewsAgent.GetAgentCard());
-
-        // json-rpc endpoint
-        app.MapA2A(hostAgent.TaskManager!, "/reviews").WithTags(GenAIEshop.Shared.Constants.Agents.ReviewsAgent);
-        app.MapHttpA2A(hostAgent.TaskManager!, "/reviews").WithTags(GenAIEshop.Shared.Constants.Agents.ReviewsAgent);
-        app.MapCustomWellKnownAgentCard(hostAgent.TaskManager!, agentPath: "/reviews");
+        app.MapA2AJsonRpc(reviewAgent, "/reviews").WithTags(GenAIEshop.Shared.Constants.Agents.ReviewsAgent);
+        app.MapA2AHttpJson(reviewAgent, "/reviews").WithTags(GenAIEshop.Shared.Constants.Agents.ReviewsAgent);
+        app.MapGet("/reviews/.well-known/agent-card.json", () => Results.Ok(ReviewsAgent.GetAgentCard()));
     }
 
     private static void MapHostSummarizeA2AAgent(this WebApplication app)
@@ -57,12 +55,8 @@ public static class InfrastructureExtensions
         var summarizeAgent = app.Services.GetRequiredKeyedService<AIAgent>(
             GenAIEshop.Shared.Constants.Agents.SummarizeAgent
         );
-        var hostAgent = new A2AHostAgent(summarizeAgent, SummerizeAgent.GetAgentCard());
-
-        app.MapA2A(hostAgent.TaskManager!, "/summarize").WithTags(GenAIEshop.Shared.Constants.Agents.SummarizeAgent);
-        app.MapHttpA2A(hostAgent.TaskManager!, "/summarize")
-            .WithTags(GenAIEshop.Shared.Constants.Agents.SummarizeAgent);
-        app.MapCustomWellKnownAgentCard(hostAgent.TaskManager!, agentPath: "/summarize");
+        app.MapA2AJsonRpc(summarizeAgent, "/summarize").WithTags(GenAIEshop.Shared.Constants.Agents.SummarizeAgent);
+        app.MapA2AHttpJson(summarizeAgent, "/summarize").WithTags(GenAIEshop.Shared.Constants.Agents.SummarizeAgent);
     }
 
     private static void MapHostSentimentA2AAgent(this WebApplication app)
@@ -70,11 +64,7 @@ public static class InfrastructureExtensions
         var sentimentAgent = app.Services.GetRequiredKeyedService<AIAgent>(
             GenAIEshop.Shared.Constants.Agents.SentimentAgent
         );
-        var hostAgent = new A2AHostAgent(sentimentAgent, SentimentAgent.GetAgentCard());
-
-        app.MapA2A(hostAgent.TaskManager!, "/sentiment").WithTags(GenAIEshop.Shared.Constants.Agents.SentimentAgent);
-        app.MapHttpA2A(hostAgent.TaskManager!, "/sentiment")
-            .WithTags(GenAIEshop.Shared.Constants.Agents.SentimentAgent);
-        app.MapCustomWellKnownAgentCard(hostAgent.TaskManager!, agentPath: "/sentiment");
+        app.MapA2AJsonRpc(sentimentAgent, "/sentiment").WithTags(GenAIEshop.Shared.Constants.Agents.SentimentAgent);
+        app.MapA2AHttpJson(sentimentAgent, "/sentiment").WithTags(GenAIEshop.Shared.Constants.Agents.SentimentAgent);
     }
 }

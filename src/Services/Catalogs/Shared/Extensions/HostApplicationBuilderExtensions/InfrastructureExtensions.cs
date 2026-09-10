@@ -1,4 +1,5 @@
 using BuildingBlocks.AI.AgentFramework;
+using BuildingBlocks.Env;
 using BuildingBlocks.OpenApi;
 using BuildingBlocks.ProblemDetails;
 using BuildingBlocks.Serialization;
@@ -7,6 +8,7 @@ using BuildingBlocks.VectorDB.Contracts;
 using BuildingBlocks.Versioning;
 using GenAIEshop.Catalogs.Products.Data;
 using GenAIEshop.Catalogs.Products.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace GenAIEshop.Catalogs.Shared.Extensions.HostApplicationBuilderExtensions;
 
@@ -14,6 +16,8 @@ public static class HostApplicationBuilderExtensions
 {
     public static IHostApplicationBuilder AddInfrastructure(this IHostApplicationBuilder builder)
     {
+        DotEnv.Load();
+        builder.Configuration.AddEnvironmentVariables();
         builder.AddCustomProblemDetails();
 
         // Apply to other places rather than controller response like openapi document generation, and customizes the default JSON serialization behavior for Minimal APIs

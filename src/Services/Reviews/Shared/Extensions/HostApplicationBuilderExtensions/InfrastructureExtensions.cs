@@ -1,4 +1,5 @@
 using BuildingBlocks.AI.AgentFramework;
+using BuildingBlocks.Env;
 using BuildingBlocks.OpenApi;
 using BuildingBlocks.ProblemDetails;
 using BuildingBlocks.Serialization;
@@ -8,6 +9,7 @@ using GenAIEshop.Reviews.Shared.Tools;
 using Microsoft.Agents.AI;
 using Microsoft.Agents.AI.Hosting;
 using Microsoft.Extensions.AI;
+using Microsoft.Extensions.Configuration;
 
 namespace GenAIEshop.Reviews.Shared.Extensions.HostApplicationBuilderExtensions;
 
@@ -15,6 +17,8 @@ public static class HostApplicationBuilderExtensions
 {
     public static IHostApplicationBuilder AddInfrastructure(this IHostApplicationBuilder builder)
     {
+        DotEnv.Load();
+        builder.Configuration.AddEnvironmentVariables();
         builder.AddCustomProblemDetails();
 
         // Apply to other places rather than controller response like openapi document generation, and customizes the default JSON serialization behavior for Minimal APIs
@@ -125,6 +129,10 @@ public static class HostApplicationBuilderExtensions
                 return InsightsSynthesizerAgent.CreateAgent(chatClient);
             }
         );
+
+        builder.AddA2AServer(GenAIEshop.Shared.Constants.Agents.ReviewsAgent, _ => { });
+        builder.AddA2AServer(GenAIEshop.Shared.Constants.Agents.SummarizeAgent, _ => { });
+        builder.AddA2AServer(GenAIEshop.Shared.Constants.Agents.SentimentAgent, _ => { });
 
         // builder.Services.AddSingleton<ReviewsSequentialOrchestrationAgent>();
         // builder.Services.AddSingleton<ReviewsChatOrchestrationAgent>();

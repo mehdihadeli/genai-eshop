@@ -6,21 +6,126 @@ on:
   pull_request:
     branches: ["main"]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET 9
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+  unit-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - tests/BuildingBlocks/BuildingBlocks.UnitTests/BuildingBlocks.UnitTests.csproj
+          - tests/Services/Catalogs/GenAIEshop.Catalogs.UnitTests/GenAIEshop.Catalogs.UnitTests.csproj
+          - tests/Services/Carts/GenAIEshop.Carts.UnitTests/GenAIEshop.Carts.UnitTests.csproj
+          - tests/Services/Orders/GenAIEshop.Orders.UnitTests/GenAIEshop.Orders.UnitTests.csproj
+          - tests/Services/Recommendation/GenAIEshop.Recommendation.UnitTests/GenAIEshop.Recommendation.UnitTests.csproj
+          - tests/Services/Reviews/GenAIEshop.Reviews.UnitTests/GenAIEshop.Reviews.UnitTests.csproj
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Run unit tests
+        run: dotnet test --project "${{ matrix.project }}" --configuration Release
+
+  integration-tests:
+    needs: build
+    # Repository secrets are unavailable to fork pull requests.
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - tests/Mcp/McpServer/GenAIEshop.McpServer.IntegrationTests.csproj
+          - tests/Services/Catalogs/GenAIEshop.Catalogs.IntegrationTests/GenAIEshop.Catalogs.IntegrationTests.csproj
+          - tests/Services/Carts/GenAIEshop.Carts.IntegrationTests/GenAIEshop.Carts.IntegrationTests.csproj
+          - tests/Services/Orders/GenAIEshop.Orders.IntegrationTests/GenAIEshop.Orders.IntegrationTests.csproj
+          - tests/Services/Recommendation/GenAIEshop.Recommendation.IntegrationTests/GenAIEshop.Recommendation.IntegrationTests.csproj
+          - tests/Services/Reviews/GenAIEshop.Reviews.IntegrationTests/GenAIEshop.Reviews.IntegrationTests.csproj
+
+    env:
+      AgentFrameworkOptions__ChatProviderType: ${{ vars.AGENT_FRAMEWORK_CHAT_PROVIDER_TYPE || 'OpenAI' }}
+      AgentFrameworkOptions__EmbeddingProviderType: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_PROVIDER_TYPE || 'OpenAI' }}
+      AgentFrameworkOptions__ChatEndpoint: ${{ vars.AGENT_FRAMEWORK_CHAT_ENDPOINT || 'https://api.deepseek.com/v1' }}
+      AgentFrameworkOptions__EmbeddingEndpoint: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_ENDPOINT || 'https://api.deepseek.com/v1' }}
+      AgentFrameworkOptions__ChatApiKey: ${{ secrets.DEEPSEEK_API_KEY }}
+      AgentFrameworkOptions__EmbeddingApiKey: ${{ secrets.DEEPSEEK_API_KEY }}
+      AgentFrameworkOptions__ChatDeploymentName: ${{ vars.AGENT_FRAMEWORK_CHAT_DEPLOYMENT_NAME || 'deepseek-chat' }}
+      AgentFrameworkOptions__ChatModel: ${{ vars.AGENT_FRAMEWORK_CHAT_MODEL || 'deepseek-chat' }}
+      AgentFrameworkOptions__EmbeddingDeploymentName: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_DEPLOYMENT_NAME || 'deepseek-embedding' }}
+      AgentFrameworkOptions__EmbeddingModel: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_MODEL || 'deepseek-embedding' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Run integration tests
+        run: dotnet test --project "${{ matrix.project }}" --configuration Release
+
+  e2e-tests:
+    needs: build
+    # Repository secrets are unavailable to fork pull requests.
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - tests/Services/Catalogs/GenAIEshop.Catalogs.EndToEndTests/GenAIEshop.Catalogs.EndToEndTests.csproj
+          - tests/Services/Carts/GenAIEshop.Carts.EndToEndTests/GenAIEshop.Carts.EndToEndTests.csproj
+          - tests/Services/Orders/GenAIEshop.Orders.EndToEndTests/GenAIEshop.Orders.EndToEndTests.csproj
+          - tests/Services/Reviews/GenAIEshop.Reviews.EndToEndTests/GenAIEshop.Reviews.EndToEndTests.csproj
+
+    env:
+      AgentFrameworkOptions__ChatProviderType: ${{ vars.AGENT_FRAMEWORK_CHAT_PROVIDER_TYPE || 'OpenAI' }}
+      AgentFrameworkOptions__EmbeddingProviderType: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_PROVIDER_TYPE || 'OpenAI' }}
+      AgentFrameworkOptions__ChatEndpoint: ${{ vars.AGENT_FRAMEWORK_CHAT_ENDPOINT || 'https://api.deepseek.com/v1' }}
+      AgentFrameworkOptions__EmbeddingEndpoint: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_ENDPOINT || 'https://api.deepseek.com/v1' }}
+      AgentFrameworkOptions__ChatApiKey: ${{ secrets.DEEPSEEK_API_KEY }}
+      AgentFrameworkOptions__EmbeddingApiKey: ${{ secrets.DEEPSEEK_API_KEY }}
+      AgentFrameworkOptions__ChatDeploymentName: ${{ vars.AGENT_FRAMEWORK_CHAT_DEPLOYMENT_NAME || 'deepseek-chat' }}
+      AgentFrameworkOptions__ChatModel: ${{ vars.AGENT_FRAMEWORK_CHAT_MODEL || 'deepseek-chat' }}
+      AgentFrameworkOptions__EmbeddingDeploymentName: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_DEPLOYMENT_NAME || 'deepseek-embedding' }}
+      AgentFrameworkOptions__EmbeddingModel: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_MODEL || 'deepseek-embedding' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Run stable end-to-end tests
+        run: dotnet test --project "${{ matrix.project }}" --configuration Release

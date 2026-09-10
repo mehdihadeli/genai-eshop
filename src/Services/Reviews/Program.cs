@@ -1,10 +1,7 @@
 using Aspire.ServiceDefaults;
-using BuildingBlocks.Env;
 using GenAIEshop.Reviews.Shared;
 using GenAIEshop.Reviews.Shared.Extensions.HostApplicationBuilderExtensions;
 using GenAIEshop.Reviews.Shared.Extensions.WebApplicationExtensions;
-
-DotEnv.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,3 +20,5 @@ app.MapDefaultEndpoints();
 app.MapApplicationEndpoints();
 
 app.Run();
+
+public partial class Program { }

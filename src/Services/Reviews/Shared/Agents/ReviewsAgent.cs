@@ -100,7 +100,8 @@ public static class ReviewsAgent
 
         // https://learn.microsoft.com/en-us/agent-framework/user-guide/agents/agent-types/?pivots=programming-language-csharp
         // https://learn.microsoft.com/en-us/agent-framework/user-guide/agents/agent-types/chat-client-agent?pivots=programming-language-csharp
-        return chatClient.CreateAIAgent(
+        return new ChatClientAgent(
+            chatClient,
             name: Name,
             description: Description,
             instructions: Instructions,
@@ -129,7 +130,7 @@ public static class ReviewsAgent
     {
         var capabilities = new AgentCapabilities { Streaming = false, PushNotifications = false };
 
-        var reviews = new AgentSkill
+        var reviews = new A2A.AgentSkill
         {
             Id = "id_reviews_agent",
             Name = Name,
