@@ -102,6 +102,25 @@ Provider notes:
 - **OpenAI-compatible providers**: select `OpenAI`, set the provider endpoint and API key, and use the provider's model name for `ChatModel` and `EmbeddingModel`.
 - **Ollama**: set both endpoints to the local Ollama URL, such as `http://localhost:11434`, and set the chat and embedding model names. API keys and API versions are not required.
 
+### GitHub Actions Configuration
+
+CI reads AI configuration from repository Actions settings instead of storing values in workflow files. Add this repository secret:
+
+- `DEEPSEEK_API_KEY`: DeepSeek API key used for chat and embedding tests.
+
+Add these repository variables when overriding defaults:
+
+- `AGENT_FRAMEWORK_CHAT_PROVIDER_TYPE`
+- `AGENT_FRAMEWORK_EMBEDDING_PROVIDER_TYPE`
+- `AGENT_FRAMEWORK_CHAT_ENDPOINT`
+- `AGENT_FRAMEWORK_EMBEDDING_ENDPOINT`
+- `AGENT_FRAMEWORK_CHAT_DEPLOYMENT_NAME`
+- `AGENT_FRAMEWORK_CHAT_MODEL`
+- `AGENT_FRAMEWORK_EMBEDDING_DEPLOYMENT_NAME`
+- `AGENT_FRAMEWORK_EMBEDDING_MODEL`
+
+Configure them under **Settings > Secrets and variables > Actions**. Keep API keys in **Secrets**, never in **Variables** or workflow YAML. Fork pull requests run build and unit-test jobs only because GitHub does not expose repository secrets to fork workflows.
+
 The application loads `.env` before building service configuration. `AgentFrameworkOptions__...` values override matching appsettings values. Existing process or container environment variables take precedence over `.env` values. Blank lines, comments, `export KEY=value`, quoted values, and values containing `=` are supported. Aspire supplies Postgres, Redis, and Qdrant connection values when running the AppHost. Keep real API keys only in local `.env`; blank or placeholder API-key values in `.env.sample` are not valid credentials.
 
 #### Using Docker-Compose
