@@ -7,7 +7,7 @@ namespace GenAIEshop.Recommendation.EndToEndTests;
 public sealed class RecommendationApiTests(SharedFixture<Program> sharedFixture)
     : EndToEndTestBase<Program>(sharedFixture)
 {
-    [Fact]
+    [Fact(Skip = "Requires an embedding-capable provider.")]
     public async Task Recommendation_endpoint_accepts_openai_compatible_configuration()
     {
         using var response = await Client.PostAsJsonAsync(

@@ -81,13 +81,13 @@ jobs:
       AgentFrameworkOptions__ChatProviderType: ${{ vars.AGENT_FRAMEWORK_CHAT_PROVIDER_TYPE || 'OpenAI' }}
       AgentFrameworkOptions__EmbeddingProviderType: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_PROVIDER_TYPE || 'OpenAI' }}
       AgentFrameworkOptions__ChatEndpoint: ${{ vars.AGENT_FRAMEWORK_CHAT_ENDPOINT || 'https://api.deepseek.com/v1' }}
-      AgentFrameworkOptions__EmbeddingEndpoint: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_ENDPOINT || 'https://api.deepseek.com/v1' }}
+      AgentFrameworkOptions__EmbeddingEndpoint: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_ENDPOINT || 'https://api.openai.com/v1' }}
       AgentFrameworkOptions__ChatApiKey: ${{ secrets.DEEPSEEK_API_KEY }}
-      AgentFrameworkOptions__EmbeddingApiKey: ${{ secrets.DEEPSEEK_API_KEY }}
+      AgentFrameworkOptions__EmbeddingApiKey: ${{ secrets.OPENAI_API_KEY }}
       AgentFrameworkOptions__ChatDeploymentName: ${{ vars.AGENT_FRAMEWORK_CHAT_DEPLOYMENT_NAME || 'deepseek-chat' }}
       AgentFrameworkOptions__ChatModel: ${{ vars.AGENT_FRAMEWORK_CHAT_MODEL || 'deepseek-chat' }}
-      AgentFrameworkOptions__EmbeddingDeploymentName: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_DEPLOYMENT_NAME || 'deepseek-embedding' }}
-      AgentFrameworkOptions__EmbeddingModel: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_MODEL || 'deepseek-embedding' }}
+      AgentFrameworkOptions__EmbeddingDeploymentName: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_DEPLOYMENT_NAME || 'text-embedding-3-small' }}
+      AgentFrameworkOptions__EmbeddingModel: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_MODEL || 'text-embedding-3-small' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -134,13 +134,13 @@ jobs:
       AgentFrameworkOptions__ChatProviderType: ${{ vars.AGENT_FRAMEWORK_CHAT_PROVIDER_TYPE || 'OpenAI' }}
       AgentFrameworkOptions__EmbeddingProviderType: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_PROVIDER_TYPE || 'OpenAI' }}
       AgentFrameworkOptions__ChatEndpoint: ${{ vars.AGENT_FRAMEWORK_CHAT_ENDPOINT || 'https://api.deepseek.com/v1' }}
-      AgentFrameworkOptions__EmbeddingEndpoint: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_ENDPOINT || 'https://api.deepseek.com/v1' }}
+      AgentFrameworkOptions__EmbeddingEndpoint: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_ENDPOINT || 'https://api.openai.com/v1' }}
       AgentFrameworkOptions__ChatApiKey: ${{ secrets.DEEPSEEK_API_KEY }}
-      AgentFrameworkOptions__EmbeddingApiKey: ${{ secrets.DEEPSEEK_API_KEY }}
+      AgentFrameworkOptions__EmbeddingApiKey: ${{ secrets.OPENAI_API_KEY }}
       AgentFrameworkOptions__ChatDeploymentName: ${{ vars.AGENT_FRAMEWORK_CHAT_DEPLOYMENT_NAME || 'deepseek-chat' }}
       AgentFrameworkOptions__ChatModel: ${{ vars.AGENT_FRAMEWORK_CHAT_MODEL || 'deepseek-chat' }}
-      AgentFrameworkOptions__EmbeddingDeploymentName: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_DEPLOYMENT_NAME || 'deepseek-embedding' }}
-      AgentFrameworkOptions__EmbeddingModel: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_MODEL || 'deepseek-embedding' }}
+      AgentFrameworkOptions__EmbeddingDeploymentName: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_DEPLOYMENT_NAME || 'text-embedding-3-small' }}
+      AgentFrameworkOptions__EmbeddingModel: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_MODEL || 'text-embedding-3-small' }}
 
     steps:
       - uses: actions/checkout@v4

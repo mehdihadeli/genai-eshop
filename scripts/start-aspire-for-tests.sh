@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export GENAI_SKIP_VECTOR_SEEDING="${GENAI_SKIP_VECTOR_SEEDING:-true}"
+
 base_urls=(
   "${GENAI_TEST_CATALOGS_BASE_URL:-http://localhost:5000}"
   "${GENAI_TEST_CARTS_BASE_URL:-http://localhost:4000}"
@@ -19,7 +21,7 @@ aspire start \
 for attempt in {1..60}; do
   ready=true
   for base_url in "${base_urls[@]}"; do
-    if ! curl --fail --silent --show-error "$base_url/health" > /dev/null; then
+    if ! curl --fail --silent --show-error --max-time 5 "$base_url/health" > /dev/null; then
       ready=false
       break
     fi
@@ -33,6 +35,7 @@ for attempt in {1..60}; do
   if [[ "$attempt" == 60 ]]; then
     echo "Timed out waiting for Aspire services." >&2
     cat "$start_log" >&2
+    aspire logs catalogs-api --tail 80 --search "error" --non-interactive --nologo >&2 || true
     exit 1
   fi
 
