@@ -139,6 +139,20 @@ Open the solution file [genai-eshop.sln](./genai-eshop.sln) in your preferred ID
 
 Now you can run each microservice using the IDE.
 
+### Run Integration Tests Locally
+
+For Rider or another IDE, start Aspire once, run tests normally from the IDE, then stop Aspire:
+
+```bash
+bash scripts/start-aspire-for-tests.sh
+# Run integration or end-to-end tests from Rider.
+bash scripts/stop-aspire-for-tests.sh
+```
+
+Docker, the Aspire CLI, and valid local AI provider settings in `.env` are required.
+
+In VS Code, use **Tasks: Run Task** with **Start Aspire for tests**, run tests from the Test Explorer, then use **Stop Aspire for tests**.
+
 ## License
 
 The project is under [MIT license](https://github.com/mehdihadeli/genai-eshop/blob/main/LICENSE).

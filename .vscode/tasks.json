@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Aspire for tests",
+      "type": "shell",
+      "command": "bash",
+      "args": ["scripts/start-aspire-for-tests.sh"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop Aspire for tests",
+      "type": "shell",
+      "command": "bash",
+      "args": ["scripts/stop-aspire-for-tests.sh"],
+      "problemMatcher": []
+    }
+  ]
+}

@@ -8,12 +8,7 @@
     <ProjectReference Include="..\..\..\src\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\..\Shared\Tests.Shared\Tests.Shared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="Microsoft.VisualStudio.TestPlatform" />
-    <PackageReference Include="xunit.v3.core.mtp-v2" />
-    <PackageReference Include="xunit.runner.visualstudio" />
-  </ItemGroup>
+  <ItemGroup></ItemGroup>
   <ItemGroup>
     <None Update="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
