@@ -9,6 +9,7 @@ namespace GenAIEshop.Catalogs.Shared.Data;
 
 public class CatalogsDataSeeder(
     IWebHostEnvironment environment,
+    IConfiguration configuration,
     IDataIngestor<Product> productVectorIngestor,
     ILogger<CatalogsDataSeeder> logger
 ) : IDataSeeder<CatalogsDbContext>
@@ -31,6 +32,13 @@ public class CatalogsDataSeeder(
     private async Task SeedProducts(CatalogsDbContext context, ProductsSeedData seedData)
     {
         await SeedProductsInEntityFrameworkAsync(context, seedData);
+
+        if (configuration.GetValue<bool>("GENAI_SKIP_VECTOR_SEEDING"))
+        {
+            logger.LogWarning("Skipping product vector seeding because GENAI_SKIP_VECTOR_SEEDING is enabled.");
+            return;
+        }
+
         await SeedProductsInVectorDBAsync(context);
     }
 

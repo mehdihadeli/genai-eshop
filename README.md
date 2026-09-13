@@ -83,12 +83,12 @@ AgentFrameworkOptions__ChatApiVersion=
 AgentFrameworkOptions__ChatDeploymentName=deepseek-v4-flash
 AgentFrameworkOptions__ChatModel=deepseek-v4-flash
 
-# DeepSeek embedding settings.
-AgentFrameworkOptions__EmbeddingEndpoint="https://api.deepseek.com/v1"
-AgentFrameworkOptions__EmbeddingApiKey="set-your-local-key"
+# Embedding provider settings. Use a provider that supports embeddings.
+AgentFrameworkOptions__EmbeddingEndpoint="https://api.openai.com/v1"
+AgentFrameworkOptions__EmbeddingApiKey="set-your-openai-key"
 AgentFrameworkOptions__EmbeddingApiVersion=
-AgentFrameworkOptions__EmbeddingDeploymentName=deepseek-v4-flash
-AgentFrameworkOptions__EmbeddingModel=deepseek-v4-flash
+AgentFrameworkOptions__EmbeddingDeploymentName=text-embedding-3-small
+AgentFrameworkOptions__EmbeddingModel=text-embedding-3-small
 
 # Optional agent behavior settings.
 AgentFrameworkOptions__Temperature=0.2
@@ -98,7 +98,7 @@ AgentFrameworkOptions__MaximumInvocationCount=10
 
 Provider notes:
 
-- **DeepSeek**: select `OpenAI` for both provider types, use `https://api.deepseek.com/v1`, and set both API keys and model names to the DeepSeek values.
+- **DeepSeek**: select `OpenAI` for chat, use `https://api.deepseek.com/v1`, and configure a separate embedding provider. DeepSeek does not provide an embeddings endpoint.
 - **OpenAI-compatible providers**: select `OpenAI`, set the provider endpoint and API key, and use the provider's model name for `ChatModel` and `EmbeddingModel`.
 - **Ollama**: set both endpoints to the local Ollama URL, such as `http://localhost:11434`, and set the chat and embedding model names. API keys and API versions are not required.
 
@@ -106,7 +106,8 @@ Provider notes:
 
 CI reads AI configuration from repository Actions settings instead of storing values in workflow files. Add this repository secret:
 
-- `DEEPSEEK_API_KEY`: DeepSeek API key used for chat and embedding tests.
+- `DEEPSEEK_API_KEY`: DeepSeek API key used for chat tests.
+- `OPENAI_API_KEY`: OpenAI API key used for embedding tests, unless another embedding provider is configured through repository variables.
 
 Add these repository variables when overriding defaults:
 
