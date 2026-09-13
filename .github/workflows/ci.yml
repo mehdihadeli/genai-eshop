@@ -73,6 +73,11 @@ jobs:
           - tests/Services/Reviews/GenAIEshop.Reviews.IntegrationTests/GenAIEshop.Reviews.IntegrationTests.csproj
 
     env:
+      GENAI_TEST_CATALOGS_BASE_URL: http://localhost:5000
+      GENAI_TEST_CARTS_BASE_URL: http://localhost:4000
+      GENAI_TEST_ORDERS_BASE_URL: http://localhost:7000
+      GENAI_TEST_RECOMMENDATION_BASE_URL: http://localhost:2000
+      GENAI_TEST_REVIEWS_BASE_URL: http://localhost:8000
       AgentFrameworkOptions__ChatProviderType: ${{ vars.AGENT_FRAMEWORK_CHAT_PROVIDER_TYPE || 'OpenAI' }}
       AgentFrameworkOptions__EmbeddingProviderType: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_PROVIDER_TYPE || 'OpenAI' }}
       AgentFrameworkOptions__ChatEndpoint: ${{ vars.AGENT_FRAMEWORK_CHAT_ENDPOINT || 'https://api.deepseek.com/v1' }}
@@ -91,8 +96,20 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Install Aspire CLI
+        run: |
+          dotnet tool install --global Aspire.Cli
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+
+      - name: Start Aspire
+        run: bash scripts/start-aspire-for-tests.sh
+
       - name: Run integration tests
         run: dotnet test --project "${{ matrix.project }}" --configuration Release
+
+      - name: Stop Aspire
+        if: always()
+        run: bash scripts/stop-aspire-for-tests.sh
 
   e2e-tests:
     needs: build
@@ -109,6 +126,11 @@ jobs:
           - tests/Services/Reviews/GenAIEshop.Reviews.EndToEndTests/GenAIEshop.Reviews.EndToEndTests.csproj
 
     env:
+      GENAI_TEST_CATALOGS_BASE_URL: http://localhost:5000
+      GENAI_TEST_CARTS_BASE_URL: http://localhost:4000
+      GENAI_TEST_ORDERS_BASE_URL: http://localhost:7000
+      GENAI_TEST_RECOMMENDATION_BASE_URL: http://localhost:2000
+      GENAI_TEST_REVIEWS_BASE_URL: http://localhost:8000
       AgentFrameworkOptions__ChatProviderType: ${{ vars.AGENT_FRAMEWORK_CHAT_PROVIDER_TYPE || 'OpenAI' }}
       AgentFrameworkOptions__EmbeddingProviderType: ${{ vars.AGENT_FRAMEWORK_EMBEDDING_PROVIDER_TYPE || 'OpenAI' }}
       AgentFrameworkOptions__ChatEndpoint: ${{ vars.AGENT_FRAMEWORK_CHAT_ENDPOINT || 'https://api.deepseek.com/v1' }}
@@ -127,5 +149,17 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Install Aspire CLI
+        run: |
+          dotnet tool install --global Aspire.Cli
+          echo "$HOME/.dotnet/tools" >> "$GITHUB_PATH"
+
+      - name: Start Aspire
+        run: bash scripts/start-aspire-for-tests.sh
+
       - name: Run stable end-to-end tests
         run: dotnet test --project "${{ matrix.project }}" --configuration Release
+
+      - name: Stop Aspire
+        if: always()
+        run: bash scripts/stop-aspire-for-tests.sh

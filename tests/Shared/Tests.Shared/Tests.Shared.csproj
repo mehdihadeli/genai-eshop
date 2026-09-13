@@ -3,13 +3,26 @@
     <AssemblyName>GenAIEshop.Tests.Shared</AssemblyName>
     <RootNamespace>GenAIEshop.Tests.Shared</RootNamespace>
   </PropertyGroup>
+  <!-- Shared test code depends on application building blocks and reusable test infrastructure. -->
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\BuildingBlocks\BuildingBlocks.csproj" />
+  </ItemGroup>
+  <!-- Runner packages stay in tests/Directory.Build.props so executable test projects inherit them. -->
+  <ItemGroup>
+    <PackageReference Include="Bogus" />
+    <PackageReference Include="Confluent.Kafka" />
+    <PackageReference Include="DotNet.Testcontainers" />
+    <PackageReference Include="MediatR" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="MongoDB.Driver" />
     <PackageReference Include="Npgsql" />
     <PackageReference Include="Respawn" />
+    <PackageReference Include="Testcontainers.Kafka" />
+    <PackageReference Include="Testcontainers.MongoDb" />
     <PackageReference Include="Testcontainers.PostgreSql" />
+    <PackageReference Include="Testcontainers.RabbitMq" />
     <PackageReference Include="Testcontainers.Redis" />
+    <!-- Shared test code uses assertion and xUnit extensibility APIs. -->
     <PackageReference Include="xunit.v3.assert" />
     <PackageReference Include="xunit.v3.extensibility.core" />
   </ItemGroup>
